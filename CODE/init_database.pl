@@ -7,7 +7,7 @@ use DBI;
 my $host = "localhost";
 my $database = "dmseq";
 my $user = "root"; #mysql username
-my $password = ""; #mysql password, if any
+my $password = "worm_server420"; #mysql password, if any
 
 #my $dsn = "DBI:mysql:$database:$host"; 
 # connect without database specified
@@ -69,6 +69,16 @@ print OUT $datastring;
 close OUT;
 
 my $actualfile = "../examples/S2_wtRNA_chr2L.sort.sam.matrix.wig";
+
+if (-f $actualfile) {
+    print "$actualfile is found!\n";
+}
+else {
+    print "NOT FOUND: $actualfile\n";
+    my $prefix = $actualfile =~ s/.matrix.wig//r;
+    print "you probably need to cd into ../examples and run:\n'../CODE/sam_to_matrix.pl $prefix WT 1'\n";
+    die;
+}
 
 # test LOCAL INFILE permissions
 eval {
