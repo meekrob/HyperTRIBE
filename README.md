@@ -1,3 +1,13 @@
+# Numerous implementation issues on Mac OS X
+HyperTRIBE relies on a mysql database to do execute its pipeline. This is unworkable in a user environment, so here are some things I had to do to get it to work on Mac OS X. *You will need the administrative password on your Mac.*
+
+- Verify perl version is 5.28, upgrade if necessary. Make sure you PATH variable reflects the new install bin.
+- Install mysql if necessary.
+  - Allow security block on LOCAL INTABLE. This is necessary to **load an entire sam file into a database** efficiently.
+  - (How to set host settings on the security block). (How to set client settings on security block).
+  - I have changed the table schemas to include default INTs, this improves speed to 2x.
+- What else do we need to do?
+
 # HyperTRIBE
 HyperTRIBE is a technique used for the identification of the targets of RNA binding proteins (RBP) in vivo. This is an improved version of a previously developed technique called TRIBE (Targets of RNA-binding proteins Identified By Editing).
 
