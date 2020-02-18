@@ -32,7 +32,17 @@ my $dbh = DBI->connect( $dsn, $user, $password, {RaiseError=>1, PrintError=>0} )
 my ($sth);
 #create the table
 eval {
-    $sth = $dbh->prepare("CREATE TABLE $tablename (experiment VARCHAR(20), time INT NOT NULL, chr varchar(10), coord INT NOT NULL, Acount INT NOT NULL, Tcount INT NOT NULL, Ccount INT NOT NULL, Gcount INT NOT NULL, Ncount INT NOT NULL, totalcount INT NOT NULL, primary key(experiment,time,chr,coord))");
+    $sth = $dbh->prepare("CREATE TABLE $tablename (experiment VARCHAR(20), 
+                                                        time INT NOT NULL, 
+                                                           chr varchar(10), 
+                                                        coord INT DEFAULT 0, 
+                                                       Acount INT DEFAULT 0, 
+                                                       Tcount INT DEFAULT 0, 
+                                                       Ccount INT DEFAULT 0, 
+                                                       Gcount INT DEFAULT 0, 
+                                                       Ncount INT DEFAULT 0, 
+                                                   totalcount INT DEFAULT 0, 
+                                   primary key(experiment,time,chr,coord))");
     $sth->execute; 
 };
 
